@@ -7,31 +7,33 @@ public class Adulttt extends UserNodes
 
 {
 
-	private ArrayList<String> fridentsNames ;
 	
 	public Adulttt (String userName, String userStatus, int userAge) {
 		super(userName, userStatus, userAge);
 		
 		//intialize arraylist
-		fridentsNames = new ArrayList<String>();
+		friends = new ArrayList<UserNodes>();
 	}
 	
-	public boolean makeFriend(String friend){
+	
+	//check if one family from two : parent1 and parent2 
+	//
+	
+	
+	public boolean makeFriend(UserNodes friend){
 		
+		if(checkAge(friend)){
+			friends.add( friend) ;
+			return true; 
+		}
+		
+		return false;
 //		ArrayList<String>fridentsNames = UerNodes.getfriend();
-		fridentsNames.add( friend) ;
-		return true; 
+		
 
 	}
 	
-	public ArrayList<String> listFridents (){
-		
-		
-		
-		
-		
-		return null; 
-	}
+
 	
 
 }
