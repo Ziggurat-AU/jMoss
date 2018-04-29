@@ -3,13 +3,14 @@ import java.util.Date;
 public class DataInput {
 	private String _Venue;
 	private String _Movie;
-	private Date _SessionDate;
+	private String _SessionDate;
 	private String _Time;
 	
-	public DataInput(String venue, String movie, Date Sessiondate, String time) {
+	public DataInput(String venue, String movie, String Sessiondate, String time) {
 		_Venue = venue;
 		_Movie = movie;
 		_SessionDate = Sessiondate;
+		_Time= time;
 		
 	}
 
@@ -21,7 +22,7 @@ public class DataInput {
 		return _Movie;
 	}
 
-	public Date getSessionDate() {
+	public String getSessionDate() {
 		return _SessionDate;
 	}
 	
@@ -29,5 +30,4 @@ public class DataInput {
 		return _Time;
 	}
 
-	
 }
