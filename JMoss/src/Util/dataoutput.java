@@ -1,3 +1,7 @@
+package Util;
+
+import Bean.DataInput;
+
 import java.util.ArrayList;
 
 public class dataoutput {

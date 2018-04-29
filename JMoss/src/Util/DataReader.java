@@ -1,9 +1,9 @@
+package Util;
+
+import Bean.DataInput;
+
 import java.io.File;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
