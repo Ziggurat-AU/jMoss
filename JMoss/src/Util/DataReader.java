@@ -18,8 +18,8 @@ public class DataReader {
 		_filename = filename;
 	}
 
-	public ArrayList<DataInput> read() throws Exception {
-		File file = new File(_filename);
+	public ArrayList<DataInput> read(String cinema) throws Exception {
+		File file = new File("cinema.csv");
 		Scanner input = new Scanner(file);
 
 		ArrayList<DataInput> dataTotal = new ArrayList<DataInput>();
@@ -27,8 +27,9 @@ public class DataReader {
 		while (input.hasNext()) {
 			String line = input.nextLine();
 			StringTokenizer st = new StringTokenizer(line, ",");
-
 			String Venue = st.nextToken();
+			if(!Venue.equals(cinema))
+				continue;
 			String Movie = st.nextToken();
 			String Date = st.nextToken();
 			String Time = st.nextToken();
