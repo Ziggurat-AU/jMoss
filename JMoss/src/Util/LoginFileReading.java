@@ -5,12 +5,13 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
+import Data.DataPath;
 
 public class LoginFileReading {
 
     public boolean auth(String uName,String password) throws IOException {
-        String File = ("Login.csv");
-        BufferedReader reader = new BufferedReader(new FileReader("Login.csv"));
+        String File = (new DataPath().dataPath + "/Login.csv");
+        BufferedReader reader = new BufferedReader(new FileReader(File));
         Scanner scanner = null;
         String line = null;
         int index = 0;

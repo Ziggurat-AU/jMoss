@@ -8,17 +8,86 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
+import View.Menu;
 
 public class Login {
 
+    static Menu menu = new Menu();
+
     public static void main(String args[]) throws Exception {
+        //Login uLogin=new Login();
+        //LoginController uLoginController=new LoginController();
+        //String uName=null;
+        //String password=null;
+        String menuSelect = null;
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Welcome to jMOSS- Java based Movie Search System");
+
+
+        menu.initial();
+        menu.show();
+
+        while (true)
+        {
+            menuSelect = sc.next();
+            switch (menuSelect){
+                case "1":
+                    MenuLogin();
+                    break;
+                case "2":
+                    System.out.println(menuSelect);
+                    break;
+                case "3":
+                    System.out.println(menuSelect);
+                    break;
+                case "4":
+                    System.out.println(menuSelect);
+                    break;
+                case "5":
+                    System.out.println(menuSelect);
+                    break;
+                case "6":
+                    Cinema cinema = new Cinema();
+                    cinema.showCinemas();
+                    menu.show();
+                    break;
+                case "7":
+                    menu.LogOut();
+                    menu.show();
+                    break;
+                case "8":
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println(menuSelect);
+                    break;
+            }
+        }
+
+//        do {
+//        System.out.println("Enter your username");
+//        uName=sc.next();
+//        System.out.println("Enter your Password");
+//        password=sc.next();
+//        if(uLoginController.checkLogin(uName,password))
+//        {
+//            uLogin.showCinemas();
+//        }
+//        else
+//        {
+//            System.out.println((char) 27 + "[31m" + "Wrong Credentials.Try Again");
+//            System.out.print((char) 27 + "[30m");
+//        }
+//        }while(!uLoginController.checkLogin(uName,password));
+    }
+
+    public static void MenuLogin() throws Exception{
         Login uLogin=new Login();
         LoginController uLoginController=new LoginController();
         String uName=null;
         String password=null;
+        String menuSelect = null;
         Scanner sc=new Scanner(System.in);
-        System.out.println("Welcome to jMOSS- Java based Movie Search System");
-
         do {
         System.out.println("Enter your username");
         uName=sc.next();
@@ -26,16 +95,17 @@ public class Login {
         password=sc.next();
         if(uLoginController.checkLogin(uName,password))
         {
-            uLogin.showCinemas();
+            menu.AuthenticatedLogin();
+            menu.show();
+            //uLogin.showCinemas();
         }
         else
         {
-            System.out.println("Wrong Credentials.Try Again");
+            System.out.println((char) 27 + "[31m" + "Wrong Credentials.Try Again");
+            System.out.print((char) 27 + "[30m");
         }
         }while(!uLoginController.checkLogin(uName,password));
     }
-
-
     public void showCinemas() throws Exception {
         Scanner sc=new Scanner(System.in);
         Login uLogin=new Login();
