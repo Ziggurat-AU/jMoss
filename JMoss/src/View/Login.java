@@ -34,9 +34,24 @@ public class Login {
                 case "1":
                     MenuLogin();
                     break;
+                    
                 case "2":
-                    System.out.println(menuSelect);
+                    System.out.println("enter customer's name");
+                    string name= sc.nextLine();
+                    System.out.println("enter customer's suburb");
+                    string suburb= sc.nextLine();
+                    System.out.println("enter customer's email");
+                    string Email= sc.nextLine();
+                    System.out.println("Cinema Venue");
+                    string Venue= sc.nextLine();
+                    System.out.println("Movie Name");
+                    string Movie= sc.nextLine();
+                    System.out.println("Movie Date");
+                    string Date= sc.nextLine();
+                    System.out.println("Movie time");
+                    string time= sc.nextLine();
                     break;
+                    
                 case "3":
                     System.out.println(menuSelect);
                     break;

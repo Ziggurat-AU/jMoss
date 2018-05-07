@@ -12,3 +12,4 @@ public class DataPath {
         dataPath = sysPath + "/jMoss/src/Data";
     }
 }
+
