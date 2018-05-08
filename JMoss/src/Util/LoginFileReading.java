@@ -29,9 +29,7 @@ public class LoginFileReading {
 
                 index++;
             }
-
-
-            if(user.equals(uName)&&pass.equals(password))
+            if(user.equals(uName) && pass.equals(password))
                     return true;
             index=0;
         }

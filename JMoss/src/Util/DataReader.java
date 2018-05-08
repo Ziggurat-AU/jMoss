@@ -1,6 +1,6 @@
 package Util;
 
-import Bean.DataInput;
+import Model.SessionModel;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class DataReader {
-	String _filename;
+	private String _filename;
 
 	public DataReader() {
 
@@ -18,21 +18,21 @@ public class DataReader {
 		_filename = filename;
 	}
 
-	public ArrayList<DataInput> read(String cinema) throws Exception {
+	public ArrayList<SessionModel> read(String cinema) throws Exception {
 		File file = new File("cinema.csv");
 		Scanner input = new Scanner(file);
 
-		ArrayList<DataInput> dataTotal = new ArrayList<DataInput>();
+		ArrayList<SessionModel> dataTotal = new ArrayList<SessionModel>();
 
 		while (input.hasNext()) {
 			String line = input.nextLine();
 			StringTokenizer st = new StringTokenizer(line, ",");
-			String Venue = st.nextToken();
-			if(!Venue.equals(cinema))
+			String venue = st.nextToken();
+			if(!venue.equals(cinema))
 				continue;
-			String Movie = st.nextToken();
-			String Date = st.nextToken();
-			String Time = st.nextToken();
+			String movie = st.nextToken();
+			String date = st.nextToken();
+			String time = st.nextToken();
 
 			/*
 			 * DateFormat df = new SimpleDateFormat("MM/dd/yyyy"); Date SessionDate; try {
@@ -43,7 +43,7 @@ public class DataReader {
 
 			// boolean found = false;
 
-			DataInput dataInput_new = new DataInput(Venue, Movie, Date, Time);
+			SessionModel dataInput_new = new SessionModel(venue, movie, date, time);
 			dataTotal.add(dataInput_new);
 
 		}

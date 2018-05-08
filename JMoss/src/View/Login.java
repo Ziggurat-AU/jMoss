@@ -1,12 +1,10 @@
 package View;
 
-import Bean.DataInput;
+import Model.SessionModel;
 import Controller.LoginController;
 import Util.dataoutput;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Scanner;
 
 public class Login {
@@ -95,14 +93,11 @@ public class Login {
         }while(choice<1||choice>2);
         if(choice==1)
             makeBooking(cinemaName);
-
-
-
     }
     public void makeBooking(String cinemaName) throws Exception {
         Scanner sc=new Scanner(System.in);
         LoginController uLoginController=new LoginController();
-        ArrayList<DataInput> movies = new ArrayList<DataInput>();
+        ArrayList<SessionModel> movies = new ArrayList<SessionModel>();
         System.out.println("Welcome to jMOSS- Java based Movie Search System");
         System.out.println("------------------------------------------------");
         System.out.println("Movies Playing at this cinema are:");
