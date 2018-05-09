@@ -17,16 +17,33 @@ public class SessionModel {
 		return venue;
 	}
 
-	public String getMovie() {
-		return movie;
+	public void setMovie(String movie) {
+		this.movie = movie;
 	}
 
 	public String getSessionDate() {
 		return sessionDate;
 	}
-	
+
+	public void setSessionDate(String sessionDate) {
+		this.sessionDate = sessionDate;
+	}
+
 	public String getTime() {
 		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+
+	public void setVenue(String venue) {
+		this.venue = venue;
+	}
+
+	public String getMovie() {
+		return movie;
 	}
 
 }

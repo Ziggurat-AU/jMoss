@@ -9,7 +9,7 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class SessionController {
-    public ArrayList<SessionModel> showMovies(String cinemaName) throws Exception {
+    public ArrayList<SessionModel> getSessions(String cinemaName) throws Exception {
         ArrayList<SessionModel> sessions = new ArrayList<SessionModel>();
         try {
             //movies= uSessionFileReader.read(cinemaName);
@@ -37,34 +37,34 @@ public class SessionController {
         return sessions;
     }
 
-    public ArrayList showSessions(String cinemaName, String movieName, ArrayList<SessionModel> movies) {
-        ArrayList arrayList=new ArrayList();
+    public ArrayList getMovieSchedules (String cinemaName, String movieName, ArrayList<SessionModel> sessions) {
+        ArrayList<SessionModel> schedules=new ArrayList<SessionModel>();
         int count=1;
         System.out.println(movieName);
-        for (SessionModel inputs : movies) {
-            if(cinemaName.equals(inputs.getVenue())&& movieName.equals(inputs.getMovie())) {
-                arrayList.add(inputs.getSessionDate()+" "+ inputs.getTime());
-                System.out.println(count + " " + inputs.getSessionDate() + " " + inputs.getTime());
+        for (SessionModel session : sessions) {
+            if(cinemaName.equals(session.getVenue())&& movieName.equals(session.getMovie())) {
+                schedules.add(session);
+                System.out.println(count + " " + session.getSessionDate() + " " + session.getTime());
                 count++;
             }
         }
-        return arrayList;
+        return schedules;
     }
 
-    public ArrayList getMovies(ArrayList<SessionModel> allData)
+    public ArrayList getMovies(ArrayList<SessionModel> sessions)
     {
         HashSet hs=new HashSet();
-        ArrayList arrayList=new ArrayList();
+        ArrayList movies=new ArrayList();
         int count=1;
-        for (SessionModel inputs : allData) {
-            if(!hs.contains(inputs.getMovie()))
+        for (SessionModel session : sessions) {
+            if(!hs.contains(session.getMovie()))
             {
-                hs.add(inputs.getMovie());
-                arrayList.add(inputs.getMovie());
-                System.out.println(count+" "+ inputs.getMovie());
+                hs.add(session.getMovie());
+                movies.add(session.getMovie());
+                System.out.println(count+" "+ session.getMovie());
                 count++;
             }
         }
-        return arrayList;
+        return movies;
     }
 }

@@ -1,16 +1,20 @@
 package Model;
 
+import java.util.UUID;
+
 public class BookingModel {
     private SessionModel session;
     private String customerEmail;
     private boolean creditCardPayment;
-    private int bookingNo;
+    private String bookingRef;
+    private String customerSuburb;
 
-    public BookingModel(SessionModel session, String customerEmail, boolean creditCardPayment, int bookingNo) {
+    public BookingModel(SessionModel session, String customerEmail, String customerSuburb, boolean creditCardPayment) {
+        this.bookingRef = UUID.randomUUID().toString();
         this.session = session;
         this.customerEmail = customerEmail;
         this.creditCardPayment = creditCardPayment;
-        this.bookingNo = bookingNo;
+        this.customerSuburb = customerSuburb;
     }
 
     public SessionModel getSession() {
@@ -37,11 +41,19 @@ public class BookingModel {
         this.creditCardPayment = creditCardPayment;
     }
 
-    public int getBookingNo() {
-        return bookingNo;
+    public String getBookingRef() {
+        return bookingRef;
     }
 
-    public void setBookingNo(int bookingNo) {
-        this.bookingNo = bookingNo;
+    public void setBookingRef(String bookingNo) {
+        this.bookingRef = bookingNo;
+    }
+
+    public String getSuburb() {
+        return customerSuburb;
+    }
+
+    public void setSuburb(String suburb) {
+        this.customerSuburb = suburb;
     }
 }
