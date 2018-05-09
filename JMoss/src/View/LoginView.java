@@ -1,42 +1,40 @@
 package View;
 
+import Controller.SessionController;
 import Model.SessionModel;
 import Controller.LoginController;
-import Util.dataoutput;
+import Util.SessionFileReader;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Login {
-
-    public static void main(String args[]) throws Exception {
-        Login uLogin=new Login();
-        LoginController uLoginController=new LoginController();
-        String uName=null;
+public class LoginView {
+    public LoginView() throws Exception {
+        LoginController loginController=new LoginController();
+        String userName=null;
         String password=null;
         Scanner sc=new Scanner(System.in);
         System.out.println("Welcome to jMOSS- Java based Movie Search System");
 
         do {
         System.out.println("Enter your username");
-        uName=sc.next();
+            userName=sc.next();
         System.out.println("Enter your Password");
         password=sc.next();
-        if(uLoginController.checkLogin(uName,password))
+        if(loginController.auth(userName,password))
         {
-            uLogin.showCinemas();
+            showCinemas();
         }
         else
         {
             System.out.println("Wrong Credentials.Try Again");
         }
-        }while(!uLoginController.checkLogin(uName,password));
+        }while(!loginController.auth(userName,password));
     }
 
 
     public void showCinemas() throws Exception {
         Scanner sc=new Scanner(System.in);
-        Login uLogin=new Login();
         int cinemaChoice;
         do {
             System.out.print("\033[H\033[2J");
@@ -65,12 +63,10 @@ public class Login {
             if(cinemaChoice<1||cinemaChoice>5)
             {
                 System.out.println("Please enter the correct choice!");
-
             }
             else
             {
-                uLogin.cinemaChoice(cinemaName)  ;
-
+                cinemaChoice(cinemaName)  ;
             }
         }
         while (cinemaChoice<1||cinemaChoice>5);
@@ -96,17 +92,17 @@ public class Login {
     }
     public void makeBooking(String cinemaName) throws Exception {
         Scanner sc=new Scanner(System.in);
-        LoginController uLoginController=new LoginController();
+        SessionController sessionController=new SessionController();
         ArrayList<SessionModel> movies = new ArrayList<SessionModel>();
         System.out.println("Welcome to jMOSS- Java based Movie Search System");
         System.out.println("------------------------------------------------");
         System.out.println("Movies Playing at this cinema are:");
-        movies=uLoginController.showMovies(cinemaName);
-        dataoutput udataoutput=new dataoutput();
+        movies=sessionController.showMovies(cinemaName);
+        SessionFileReader sessionFileReader=new SessionFileReader();
         ArrayList arrayList=new ArrayList();
         int movieChoice;
         do {
-            arrayList= udataoutput.display(movies);
+            arrayList= sessionFileReader.display(movies);
             System.out.println("Enter your choice for you want to display the sessions for");
             movieChoice=sc.nextInt();
         }while(movieChoice<1||movieChoice>arrayList.size());
@@ -115,10 +111,8 @@ public class Login {
         do {
             String movieName = (String) arrayList.get(movieChoice - 1);
              sessions = new ArrayList();
-            sessions = uLoginController.showSessions(cinemaName, movieName, movies);
+            sessions = sessionController.showSessions(cinemaName, movieName, movies);
             sessionChoice=sc.nextInt();
         }while(sessionChoice<1||sessionChoice> sessions.size());
-
-
     }
 }

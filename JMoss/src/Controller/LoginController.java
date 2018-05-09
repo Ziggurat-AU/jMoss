@@ -1,32 +1,36 @@
 package Controller;
 
-import Model.SessionModel;
-import Util.DataReader;
-import Util.LoginFileReading;
-import Util.dataoutput;
-
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Scanner;
 
 public class LoginController {
-    public boolean checkLogin(String uName,String password) throws IOException {
-        LoginFileReading uLoginFileReading=new LoginFileReading();
-        return uLoginFileReading.auth(uName,password);
-    }
+    public boolean auth(String uName,String password) throws IOException {
+        String File = ("Login.csv");
+        BufferedReader reader = new BufferedReader(new FileReader("Login.csv"));
+        Scanner scanner = null;
+        String line = null;
+        int index = 0;
+        while ((line = reader.readLine()) != null) {
+            scanner = new Scanner(line);
+            scanner.useDelimiter(",");
+            String user=null;
+            String pass=null;
+            while (scanner.hasNext()) {
+                String data = scanner.next();
 
-    public ArrayList<SessionModel> showMovies(String cinemaName) throws Exception {
-        ArrayList<SessionModel> movies = new ArrayList<SessionModel>();
-        DataReader uDataReader=new DataReader();
-        try {
-            movies=uDataReader.read(cinemaName);
-        } catch (Exception e) {
-            e.printStackTrace();
+                if(index == 0)
+                    user = data;
+                else
+                    pass = data;
+
+                index++;
+            }
+            if(user.equals(uName) && pass.equals(password))
+                return true;
+            index=0;
         }
-        return movies;
-    }
-
-    public ArrayList showSessions(String cinemaName, String movieName, ArrayList<SessionModel> movies) {
-        dataoutput udataoutput=new dataoutput();
-        return udataoutput.showSessions(cinemaName,movieName,movies);
+        return false;
     }
 }
