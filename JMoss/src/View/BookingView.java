@@ -58,15 +58,22 @@ public class BookingView {
                 sessions = sessionController.getMovieSchedules(cinemaName, movieName, sessions);
                 sessionChoice = sc.nextInt();
 
-                System.out.println("Enter customer's email:");
-                String customerEmail = sc.nextLine();
-
-                System.out.println("Enter customer's Suburb:");
-                String customerSuburb = sc.nextLine();
-
-                BookingModel bookingModel = new BookingModel(sessions.get(sessionChoice-1),customerEmail, customerSuburb,true);
                 BookingController bookingController = new BookingController();
-                bookingController.saveBooking(bookingModel);
+                if (bookingController.isAvailable(sessions.get(sessionChoice-1))) {
+                    System.out.println("Enter customer's email:");
+                    sc = new Scanner(System.in);
+                    String customerEmail = sc.nextLine();
+
+                    System.out.println("Enter customer's Suburb:");
+                    sc = new Scanner(System.in);
+                    String customerSuburb = sc.nextLine();
+                    BookingModel bookingModel = new BookingModel(sessions.get(sessionChoice - 1), customerEmail, customerSuburb, true);
+
+                    bookingController.saveBooking(bookingModel);
+                }
+                else{
+                    System.out.println("Session is already full!");
+                }
 
             } while (sessionChoice < 1 || sessionChoice > sessions.size());
         }

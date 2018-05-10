@@ -49,11 +49,12 @@ public class BookingModel {
         this.bookingRef = bookingNo;
     }
 
-    public String getSuburb() {
+    public String getCustomerSuburb() {
         return customerSuburb;
     }
 
-    public void setSuburb(String suburb) {
-        this.customerSuburb = suburb;
+    public void setCustomerSuburb(String customerSuburb) {
+        this.customerSuburb = customerSuburb;
     }
+
 }

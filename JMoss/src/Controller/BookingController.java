@@ -14,22 +14,26 @@ public class BookingController {
         FileWriter fileWriter = null;
 
         try {
-            fileWriter = new FileWriter("booking.csv");
+            fileWriter = new FileWriter("booking.csv", true);
 
                 fileWriter.append(String.valueOf(bookingModel.getBookingRef()));
                 fileWriter.append(",");
-                fileWriter.append(bookingModel.getCustomerEmail());
-//            fileWriter.append(",");
-//                fileWriter.append(bookingModel.get);
-//            fileWriter.append(",");
-//                fileWriter.append(student.getGender());
-//            fileWriter.append(",");
-//                fileWriter.append(String.valueOf(student.getAge()));
-//            fileWriter.append(",");
+                fileWriter.append(String.valueOf(bookingModel.getSession().getVenue()));
+           fileWriter.append(",");
+                fileWriter.append(String.valueOf(bookingModel.getSession().getMovie()));
+            fileWriter.append(",");
+            fileWriter.append(String.valueOf(bookingModel.getSession().getSessionDate()));
+            fileWriter.append(",");
+            fileWriter.append(String.valueOf(bookingModel.getSession().getTime()));
+            fileWriter.append(",");
+            fileWriter.append(String.valueOf(bookingModel.getCustomerEmail()));
+            fileWriter.append(",");
+            fileWriter.append(String.valueOf(bookingModel.getCustomerSuburb()));
+            fileWriter.append(",");
+            fileWriter.append(String.valueOf(bookingModel.isCreditCardPayment()));
             fileWriter.append("\n");
 
-
-            System.out.println("CSV file was created successfully !!!");
+            System.out.println("Booking successful");
 
         } catch (Exception e) {
             System.out.println("Error in CsvFileWriter !!!");
@@ -45,25 +49,30 @@ public class BookingController {
         }
     }
 
-//    public boolean isAvailable(SessionModel sessionModel) throws Exception{
-//        try {
-//            //movies= uSessionFileReader.read(cinemaName);
-//            File file = new File("booking.csv");
-//            Scanner input = new Scanner(file);
-//
-//            while (input.hasNext()) {
-//                String line = input.nextLine();
-//                StringTokenizer st = new StringTokenizer(line, ",");
-//                String venue = st.nextToken();
-//                if(!venue.equals(cinemaName))
-//                    continue;
-//                String movie = st.nextToken();
-//                String date = st.nextToken();
-//                String time = st.nextToken();
-//
-//                SessionModel dataInput_new = new SessionModel(venue, movie, date, time);
-//                sessions.add(dataInput_new);
-//            }
-//    }
+    public boolean isAvailable(SessionModel sessionModel) throws Exception {
+        try {
+            //movies= uSessionFileReader.read(cinemaName);
+            File file = new File("booking.csv");
+            Scanner input = new Scanner(file);
+            int count = 0;
+
+            while (input.hasNext()) {
+                String line = input.nextLine();
+                StringTokenizer st = new StringTokenizer(line, ",");
+                String bookingRef = st.nextToken();
+                String cinemaName = st.nextToken();
+                String movie = st.nextToken();
+                String date = st.nextToken();
+                String time = st.nextToken();
+                if (!cinemaName.equals(sessionModel.getVenue()) && !movie.equals(sessionModel.getMovie()) && !date.equals(sessionModel.getSessionDate()) && !date.equals(sessionModel.getTime()))
+                    continue;
+                count++;
+            }
+            return (count < 20);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 }
