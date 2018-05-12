@@ -24,6 +24,8 @@ public class BookingController {
             fileWriter.append(",");
             fileWriter.append(String.valueOf(bookingModel.getSession().getSessionDate()));
             fileWriter.append(",");
+            fileWriter.append(String.valueOf(bookingModel.getSeatsAmount()));
+            fileWriter.append(",");
             fileWriter.append(String.valueOf(bookingModel.getSession().getTime()));
             fileWriter.append(",");
             fileWriter.append(String.valueOf(bookingModel.getCustomerEmail()));
@@ -49,12 +51,12 @@ public class BookingController {
         }
     }
 
-    public boolean isAvailable(SessionModel sessionModel) throws Exception {
+    public int getAvailableSeatAmount(SessionModel sessionModel) throws Exception {
+        int seatsTotal = 0;
         try {
             //movies= uSessionFileReader.read(cinemaName);
             File file = new File("booking.csv");
             Scanner input = new Scanner(file);
-            int count = 0;
 
             while (input.hasNext()) {
                 String line = input.nextLine();
@@ -66,12 +68,14 @@ public class BookingController {
                 String time = st.nextToken();
                 if (!cinemaName.equals(sessionModel.getVenue()) && !movie.equals(sessionModel.getMovie()) && !date.equals(sessionModel.getSessionDate()) && !date.equals(sessionModel.getTime()))
                     continue;
-                count++;
+                int seatsAmount = Integer.parseInt(st.nextToken());
+                seatsTotal = seatsTotal + seatsAmount;
             }
-            return (count < 20);
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+        }
+        finally {
+            return seatsTotal;
         }
     }
 

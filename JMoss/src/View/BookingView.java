@@ -59,7 +59,13 @@ public class BookingView {
                 sessionChoice = sc.nextInt();
 
                 BookingController bookingController = new BookingController();
-                if (bookingController.isAvailable(sessions.get(sessionChoice-1))) {
+
+                sc = new Scanner(System.in);
+                System.out.println("Enter amount of seats for booking:");
+                int seatsAmount = sc.nextInt();
+
+                int availableSeatAmount = 20 - (bookingController.getAvailableSeatAmount(sessions.get(sessionChoice-1)));
+                if (seatsAmount <= availableSeatAmount) {
                     System.out.println("Enter customer's email:");
                     sc = new Scanner(System.in);
                     String customerEmail = sc.nextLine();
@@ -67,14 +73,18 @@ public class BookingView {
                     System.out.println("Enter customer's Suburb:");
                     sc = new Scanner(System.in);
                     String customerSuburb = sc.nextLine();
-                    BookingModel bookingModel = new BookingModel(sessions.get(sessionChoice - 1), customerEmail, customerSuburb, true);
+                    BookingModel bookingModel = new BookingModel(sessions.get(sessionChoice - 1), customerEmail, customerSuburb,seatsAmount, true);
 
                     bookingController.saveBooking(bookingModel);
                 }
-                else{
+                else if (availableSeatAmount == 0) {
+                    System.out.println("Cannot proceed with booking!");
                     System.out.println("Session is already full!");
                 }
-
+                else{
+                    System.out.println("Cannot proceed with booking!");
+                    System.out.println("Maximum number of seats available is: " + availableSeatAmount);
+                }
             } while (sessionChoice < 1 || sessionChoice > sessions.size());
         }
     }

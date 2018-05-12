@@ -9,12 +9,15 @@ public class BookingModel {
     private String bookingRef;
     private String customerSuburb;
 
-    public BookingModel(SessionModel session, String customerEmail, String customerSuburb, boolean creditCardPayment) {
+    private int seatsAmount;
+
+    public BookingModel(SessionModel session, String customerEmail, String customerSuburb, int seatsAmount, boolean creditCardPayment) {
         this.bookingRef = UUID.randomUUID().toString();
         this.session = session;
         this.customerEmail = customerEmail;
         this.creditCardPayment = creditCardPayment;
         this.customerSuburb = customerSuburb;
+        this.seatsAmount = seatsAmount;
     }
 
     public SessionModel getSession() {
@@ -55,6 +58,14 @@ public class BookingModel {
 
     public void setCustomerSuburb(String customerSuburb) {
         this.customerSuburb = customerSuburb;
+    }
+
+    public int getSeatsAmount() {
+        return seatsAmount;
+    }
+
+    public void setSeatsAmount(int seatsAmount) {
+        this.seatsAmount = seatsAmount;
     }
 
 }
