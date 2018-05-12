@@ -20,6 +20,15 @@ public class BookingModel {
         this.seatsAmount = seatsAmount;
     }
 
+    public BookingModel(String bookingRef, SessionModel session, String customerEmail, String customerSuburb, int seatsAmount, boolean creditCardPayment) {
+        this.bookingRef = bookingRef;
+        this.session = session;
+        this.customerEmail = customerEmail;
+        this.creditCardPayment = creditCardPayment;
+        this.customerSuburb = customerSuburb;
+        this.seatsAmount = seatsAmount;
+    }
+
     public SessionModel getSession() {
         return session;
     }

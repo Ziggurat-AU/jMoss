@@ -95,5 +95,30 @@ public class BookingView {
 
     public void deleteBooking(){}
 
-    public void getBookingDetails(){}
+    public void getBookingDetails(){
+        Scanner sc=new Scanner(System.in);
+
+        System.out.println("Enter customer's email:");
+        sc = new Scanner(System.in);
+        String customerEmail = sc.nextLine();
+
+        BookingController bookingController = new BookingController();
+
+        ArrayList<BookingModel> customerBookings = bookingController.getCustomerBookings(customerEmail);
+
+        if (customerBookings.size() > 0){
+            int count = 1;
+            for (BookingModel booking : customerBookings) {
+                System.out.println("Booking " + count + " details:");
+                System.out.println("Cinema theatre: " + booking.getSession().getVenue());
+                System.out.println("Movie: " + booking.getSession().getMovie());
+                System.out.println("Date: " + booking.getSession().getSessionDate());
+                System.out.println("Time: " + booking.getSession().getVenue());
+                System.out.println("Amount of seat: " + booking.getSeatsAmount());
+            }
+        }
+        else{
+            System.out.println("Customer has no booking!");
+        }
+    }
 }

@@ -6,6 +6,7 @@ import Model.SessionModel;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -24,9 +25,9 @@ public class BookingController {
             fileWriter.append(",");
             fileWriter.append(String.valueOf(bookingModel.getSession().getSessionDate()));
             fileWriter.append(",");
-            fileWriter.append(String.valueOf(bookingModel.getSeatsAmount()));
-            fileWriter.append(",");
             fileWriter.append(String.valueOf(bookingModel.getSession().getTime()));
+            fileWriter.append(",");
+            fileWriter.append(String.valueOf(bookingModel.getSeatsAmount()));
             fileWriter.append(",");
             fileWriter.append(String.valueOf(bookingModel.getCustomerEmail()));
             fileWriter.append(",");
@@ -76,6 +77,40 @@ public class BookingController {
         }
         finally {
             return seatsTotal;
+        }
+    }
+
+    public ArrayList<BookingModel> getCustomerBookings (String customerEmail){
+        ArrayList<BookingModel> customerBookings = new ArrayList<BookingModel>();
+        try {
+            File file = new File("booking.csv");
+            Scanner input = new Scanner(file);
+
+            while (input.hasNext()) {
+                String line = input.nextLine();
+                StringTokenizer st = new StringTokenizer(line, ",");
+                String bookingRef = st.nextToken();
+                String cinemaName = st.nextToken();
+                String movie = st.nextToken();
+                String date = st.nextToken();
+                String time = st.nextToken();
+                int seatsAmount = Integer.parseInt(st.nextToken());
+                String email = st.nextToken();
+                if (!email.equals(customerEmail))
+                    continue;
+                String suburb = st.nextToken();
+                Boolean isCreditCardPayment = Boolean.parseBoolean(st.nextToken());
+
+                SessionModel session = new SessionModel(cinemaName,movie,date,time);
+                BookingModel booking = new BookingModel(bookingRef, session,email,suburb, seatsAmount,isCreditCardPayment);
+                customerBookings.add(booking);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            return customerBookings;
         }
     }
 
