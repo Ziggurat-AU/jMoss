@@ -9,7 +9,7 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class SessionController {
-    public ArrayList<SessionModel> getSessions(String cinemaName) throws Exception {
+    public ArrayList<SessionModel> getSessions(String cinemaName) {
         ArrayList<SessionModel> sessions = new ArrayList<SessionModel>();
         try {
             //movies= uSessionFileReader.read(cinemaName);

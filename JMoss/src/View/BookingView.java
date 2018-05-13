@@ -93,7 +93,9 @@ public class BookingView {
 
     }
 
-    public void deleteBooking(){}
+    public void deleteBooking(){
+
+    }
 
     public void getBookingDetails(){
         Scanner sc=new Scanner(System.in);
@@ -115,6 +117,7 @@ public class BookingView {
                 System.out.println("Date: " + booking.getSession().getSessionDate());
                 System.out.println("Time: " + booking.getSession().getVenue());
                 System.out.println("Amount of seat: " + booking.getSeatsAmount());
+                System.out.println("\n");
             }
         }
         else{

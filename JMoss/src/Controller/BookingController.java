@@ -11,7 +11,7 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class BookingController {
-    public void saveBooking(BookingModel bookingModel) throws Exception{
+    public void saveBooking(BookingModel bookingModel) {
         FileWriter fileWriter = null;
 
         try {
@@ -52,7 +52,7 @@ public class BookingController {
         }
     }
 
-    public int getAvailableSeatAmount(SessionModel sessionModel) throws Exception {
+    public int getAvailableSeatAmount(SessionModel sessionModel) {
         int seatsTotal = 0;
         try {
             //movies= uSessionFileReader.read(cinemaName);
