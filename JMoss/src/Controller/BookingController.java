@@ -94,10 +94,10 @@ public class BookingController {
                 String movie = st.nextToken();
                 String date = st.nextToken();
                 String time = st.nextToken();
-                int seatsAmount = Integer.parseInt(st.nextToken());
+                int seatsAmount = 1;// Integer.parseInt(st.nextToken());
                 String email = st.nextToken();
-                if (!email.equals(customerEmail))
-                    continue;
+                //if (!email.equals(customerEmail))
+                //    continue;
                 String suburb = st.nextToken();
                 Boolean isCreditCardPayment = Boolean.parseBoolean(st.nextToken());
 
@@ -114,4 +114,30 @@ public class BookingController {
         }
     }
 
+    public ArrayList<BookingModel> getBookingLists (){
+        ArrayList<String> emailLists = new ArrayList<String>();
+
+        ArrayList<BookingModel> customerBookings = new ArrayList<BookingModel>();
+        try {
+            File file = new File("booking.csv");
+            Scanner input = new Scanner(file);
+
+            while (input.hasNext()) {
+                String line = input.nextLine();
+                String arr[] = line.split(",");
+                if (!emailLists.contains(arr[5]))
+                    emailLists.add(arr[5]);
+            }
+
+            if (emailLists.size() > 0)
+            for (int i =0; i < emailLists.size(); i++) {
+                customerBookings.addAll(customerBookings.size(),getCustomerBookings(emailLists.get(i)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            return customerBookings;
+        }
+    }
 }

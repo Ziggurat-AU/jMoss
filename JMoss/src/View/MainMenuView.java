@@ -23,11 +23,12 @@ public class MainMenuView {
             System.out.println("1. Make a new Booking");
             System.out.println("2. Delete a booking");
             System.out.println("3. Retrieve booking details");
+            System.out.println("4. Show Booking Lists");
             choice= sc.nextInt();
-            if (choice < 1 || choice > 2) {
+            if (choice < 1 || choice > 4) {
                 System.out.println("Please enter the correct choice!");
             }
-        }while(choice<1||choice>3);
+        }while(choice<1||choice>4);
         if(choice==1) {
             BookingView bookingView = new BookingView();
             bookingView.makeBooking();
@@ -39,6 +40,10 @@ public class MainMenuView {
         if(choice==3) {
             BookingView bookingView = new BookingView();
             bookingView.getBookingDetails();
+        }
+        if(choice==4) {
+            BookingView bookingView = new BookingView();
+            bookingView.getBookingLists();
         }
     }
 }

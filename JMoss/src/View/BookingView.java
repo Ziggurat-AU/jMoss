@@ -121,4 +121,45 @@ public class BookingView {
             System.out.println("Customer has no booking!");
         }
     }
+
+    public void getBookingLists() {
+        BookingController bookingController = new BookingController();
+
+        ArrayList<BookingModel> bookinglists = bookingController.getBookingLists();
+
+        String email = null;
+        int counter = 0;
+        int counterInner = 0;
+        if (bookinglists.size() > 0) {
+            for(BookingModel bm : bookinglists){
+                if (email == null){
+                    counter++;
+                    counterInner = 0;
+                    System.out.println("============================================================================================");
+                    System.out.println("============================================================================================");
+                    System.out.println("\t" + counter + "\t Booking \t" +  bm.getCustomerEmail());
+                }
+                    email = bm.getCustomerEmail();
+                if (email == bm.getCustomerEmail()) {
+                    counterInner++;
+                    System.out.println("");
+                    System.out.println("\t\t Cinema theatre: " + bm.getSession().getVenue());
+                    System.out.println("\t\t Movie: " + bm.getSession().getMovie());
+                    System.out.println("\t\t Date: " + bm.getSession().getSessionDate());
+                    System.out.println("\t\t Time: " + bm.getSession().getVenue());
+                    System.out.println("\t\t Amount of seat: " + bm.getSeatsAmount());
+                }
+                else{
+                    counter++;
+                    counterInner = 0;
+                    System.out.println("============================================================================================");
+                    System.out.println("============================================================================================");
+                    System.out.println(counter +  "===================" + bm.getCustomerEmail() + "===========================");
+                }
+                email = bm.getCustomerEmail();
+            }
+            System.out.println("============================================================================================");
+            System.out.println("============================================================================================");
+        }
+    }
 }
