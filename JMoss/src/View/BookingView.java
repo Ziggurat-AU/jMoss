@@ -4,12 +4,38 @@ import Controller.BookingController;
 import Controller.SessionController;
 import Model.BookingModel;
 import Model.SessionModel;
+import Utils.JmossUtils;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class BookingView {
-    public void makeBooking() throws Exception{
+    private SessionController sessionController = new SessionController();
+    private BookingController bookingController = new BookingController();
+
+    public void selectBookingType() throws Exception{
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter your search option:");
+        System.out.println("1. Search by theatre");
+        System.out.println("2. Search by movie");
+        int searchChoice=JmossUtils.getInt();
+        if(searchChoice==1)
+        {
+            bookByTheatre();
+        }
+        else if(searchChoice==2)
+        {
+            bookByMovie();
+        }
+        if(searchChoice<1||searchChoice>2)
+        {
+            System.out.println("Please enter the correct choice!");
+        }
+    }
+
+    private void bookByTheatre(){
         Scanner sc=new Scanner(System.in);
         String cinemaName = null;
         int cinemaChoice;
@@ -19,7 +45,7 @@ public class BookingView {
         System.out.println("3. Melbourne CBD");
         System.out.println("4. Sunshine");
         System.out.println("5. Lilydale");
-        cinemaChoice=sc.nextInt();
+        cinemaChoice=JmossUtils.getInt();
         if(cinemaChoice==1)
             cinemaName= "St Kilda";
         else if(cinemaChoice==2)
@@ -37,56 +63,104 @@ public class BookingView {
         else {
             System.out.println("------------------------------------------------");
             System.out.println("Welcome to " + cinemaName + " Cinemas");
-            SessionController sessionController = new SessionController();
             ArrayList<SessionModel> sessions;
             System.out.println("Welcome to jMOSS- Java based Movie Search System");
             System.out.println("------------------------------------------------");
             System.out.println("Movies Playing at this cinema are:");
-            sessions = sessionController.getSessions(cinemaName);
-            ArrayList movies = new ArrayList();
-            int movieChoice;
-            do {
-                movies = sessionController.getMovies(sessions);
-                System.out.println("Enter your choice of the movie you want to display the sessions for");
-                movieChoice = sc.nextInt();
-            } while (movieChoice < 1 || movieChoice > sessions.size());
+            sessions = sessionController.getSessionsByTheatre(cinemaName);
+
+            ArrayList<String> movieNames = new ArrayList<String>(sessionController.getMovies(sessions));
+            int movieChoice = selectMovie(movieNames);
+            String selectedMovie = movieNames.get(movieChoice-1);
+
             int sessionChoice;
             ArrayList movieSchedules;
             do {
-                String movieName = (String) movies.get(movieChoice - 1);
                 movieSchedules = new ArrayList();
-                sessions = sessionController.getMovieSchedules(cinemaName, movieName, sessions);
-                sessionChoice = sc.nextInt();
+                sessions = sessionController.getMovieSchedules(cinemaName, selectedMovie, sessions);
+                sessionChoice = JmossUtils.getInt();
 
-                BookingController bookingController = new BookingController();
+                SessionModel selectedSession = sessions.get(sessionChoice - 1);
 
-                sc = new Scanner(System.in);
-                System.out.println("Enter amount of seats for booking:");
-                int seatsAmount = sc.nextInt();
+                makeBooking(selectedSession);
 
-                int availableSeatAmount = 20 - (bookingController.getAvailableSeatAmount(sessions.get(sessionChoice-1)));
-                if (seatsAmount <= availableSeatAmount) {
-                    System.out.println("Enter customer's email:");
-                    sc = new Scanner(System.in);
-                    String customerEmail = sc.nextLine();
-
-                    System.out.println("Enter customer's Suburb:");
-                    sc = new Scanner(System.in);
-                    String customerSuburb = sc.nextLine();
-                    BookingModel bookingModel = new BookingModel(sessions.get(sessionChoice - 1), customerEmail, customerSuburb,seatsAmount, true);
-
-                    bookingController.saveBooking(bookingModel);
-                }
-                else if (availableSeatAmount == 0) {
-                    System.out.println("Cannot proceed with booking!");
-                    System.out.println("Session is already full!");
-                }
-                else{
-                    System.out.println("Cannot proceed with booking!");
-                    System.out.println("Maximum number of seats available is: " + availableSeatAmount);
-                }
             } while (sessionChoice < 1 || sessionChoice > sessions.size());
         }
+    }
+
+    private void makeBooking(SessionModel selectedSession){
+        Scanner sc=new Scanner(System.in);
+        BookingController bookingController = new BookingController();
+
+        System.out.println("Enter amount of seats for booking:");
+        int seatsAmount = JmossUtils.getInt();;
+
+        int availableSeatAmount = 20 - (bookingController.getAvailableSeatAmount(selectedSession));
+        if (seatsAmount <= availableSeatAmount) {
+            System.out.println("Enter customer's email:");
+            sc = new Scanner(System.in);
+            String customerEmail = sc.nextLine();
+
+            System.out.println("Enter customer's Suburb:");
+            sc = new Scanner(System.in);
+            String customerSuburb = sc.nextLine();
+
+            Boolean creditCardPayment = null;
+
+            do {
+                System.out.println("Credit card payment (Y/N):");
+                sc = new Scanner(System.in);
+                char creditCardOption = sc.next().charAt(0);
+
+                if (creditCardOption == 'Y' || creditCardOption == 'y') {
+                    creditCardPayment = true;
+                } else if (creditCardOption == 'N' || creditCardOption == 'n') {
+                    creditCardPayment = false;
+                }
+                else{
+                    System.out.println("Invalid choice!");
+                    System.out.println("Credit card payment (Y/N):");
+                }
+            }
+            while (creditCardPayment == null);
+
+            BookingModel bookingModel = new BookingModel(selectedSession, customerEmail, customerSuburb,seatsAmount, creditCardPayment);
+
+            bookingController.saveBooking(bookingModel);
+        }
+        else if (availableSeatAmount == 0) {
+            System.out.println("Cannot proceed with booking!");
+            System.out.println("Session is already full!");
+        }
+        else{
+            System.out.println("Cannot proceed with booking!");
+            System.out.println("Maximum number of seats available is: " + availableSeatAmount);
+        }
+    }
+
+    private void bookByMovie(){
+        ArrayList<SessionModel> allSessionList = sessionController.getAllSessions();
+
+        int movieChoice;
+        ArrayList<String> movieNames = new ArrayList<String>(sessionController.getMovies(allSessionList));
+
+        movieChoice = selectMovie(movieNames);
+        String selectedMovie = movieNames.get(movieChoice-1);
+
+    }
+
+    private int selectMovie(ArrayList<String> movieNames){
+        int movieChoice;
+        do {
+            for (int i = 0; i < movieNames.size(); i++) {
+                System.out.println(i+1 +" "+movieNames.get(i));
+            }
+
+            System.out.println("Enter your choice of the movie you want to display the sessions for");
+            movieChoice = JmossUtils.getInt();
+        } while (movieChoice < 1 || movieChoice > movieNames.size());
+
+        return movieChoice;
     }
 
     private void selectCinema(){
@@ -128,13 +202,13 @@ public class BookingView {
     public void getBookingLists() {
         BookingController bookingController = new BookingController();
 
-        ArrayList<BookingModel> bookinglists = bookingController.getBookingLists();
+        ArrayList<BookingModel> bookingLists = bookingController.getBookingLists();
 
         String email = null;
         int counter = 0;
         int counterInner = 0;
-        if (bookinglists.size() > 0) {
-            for(BookingModel bm : bookinglists){
+        if (bookingLists.size() > 0) {
+            for(BookingModel bm : bookingLists){
                 if (email == null){
                     counter++;
                     counterInner = 0;
