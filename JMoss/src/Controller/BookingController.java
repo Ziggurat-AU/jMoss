@@ -94,7 +94,7 @@ public class BookingController {
                 String movie = st.nextToken();
                 String date = st.nextToken();
                 String time = st.nextToken();
-                int seatsAmount = 1;// Integer.parseInt(st.nextToken());
+                int seatsAmount = Integer.parseInt(st.nextToken());
                 String email = st.nextToken();
                 //if (!email.equals(customerEmail))
                 //    continue;

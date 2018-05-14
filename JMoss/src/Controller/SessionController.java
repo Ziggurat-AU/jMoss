@@ -78,6 +78,21 @@ public class SessionController {
         return schedules;
     }
 
+    public ArrayList getMovieSchedules (String movieName, ArrayList<SessionModel> sessions) {
+        ArrayList<SessionModel> schedules=new ArrayList<SessionModel>();
+        int count=1;
+        System.out.println(movieName);
+        System.out.println("Number\tTheatre\tDate\tTime");
+        for (SessionModel session : sessions) {
+            if(movieName.equals(session.getMovie())) {
+                schedules.add(session);
+                System.out.println(count + "\t" + session.getVenue() + "\t" + session.getSessionDate() + "\t" + session.getTime());
+                count++;
+            }
+        }
+        return schedules;
+    }
+
     public HashSet<String> getMovies(ArrayList<SessionModel> sessions)
     {
         HashSet hs=new HashSet();

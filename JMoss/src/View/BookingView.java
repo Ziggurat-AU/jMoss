@@ -70,13 +70,11 @@ public class BookingView {
             sessions = sessionController.getSessionsByTheatre(cinemaName);
 
             ArrayList<String> movieNames = new ArrayList<String>(sessionController.getMovies(sessions));
-            int movieChoice = selectMovie(movieNames);
-            String selectedMovie = movieNames.get(movieChoice-1);
+            String selectedMovie = selectMovie(movieNames);
 
             int sessionChoice;
-            ArrayList movieSchedules;
+            ArrayList movieSchedules = new ArrayList();
             do {
-                movieSchedules = new ArrayList();
                 sessions = sessionController.getMovieSchedules(cinemaName, selectedMovie, sessions);
                 sessionChoice = JmossUtils.getInt();
 
@@ -93,7 +91,7 @@ public class BookingView {
         BookingController bookingController = new BookingController();
 
         System.out.println("Enter amount of seats for booking:");
-        int seatsAmount = JmossUtils.getInt();;
+        int seatsAmount = JmossUtils.getInt();
 
         int availableSeatAmount = 20 - (bookingController.getAvailableSeatAmount(selectedSession));
         if (seatsAmount <= availableSeatAmount) {
@@ -134,7 +132,7 @@ public class BookingView {
         }
         else{
             System.out.println("Cannot proceed with booking!");
-            System.out.println("Maximum number of seats available is: " + availableSeatAmount);
+            System.out.println("Maximum number of seats available for this session is: " + availableSeatAmount);
         }
     }
 
@@ -144,23 +142,36 @@ public class BookingView {
         int movieChoice;
         ArrayList<String> movieNames = new ArrayList<String>(sessionController.getMovies(allSessionList));
 
-        movieChoice = selectMovie(movieNames);
-        String selectedMovie = movieNames.get(movieChoice-1);
+        String selectedMovie = selectMovie(movieNames);
+
+        ArrayList movieSchedules = new ArrayList();
+
+        ArrayList<SessionModel> sessions = sessionController.getMovieSchedules(selectedMovie, allSessionList);
+        int sessionChoice;
+        do {
+            sessionChoice = JmossUtils.getInt();
+
+            SessionModel selectedSession = sessions.get(sessionChoice - 1);
+
+            makeBooking(selectedSession);
+
+        } while (sessionChoice < 1 || sessionChoice > sessions.size());
 
     }
 
-    private int selectMovie(ArrayList<String> movieNames){
+    private String selectMovie(ArrayList<String> movieNames){
         int movieChoice;
         do {
+            System.out.println("Number\tMovie Name");
             for (int i = 0; i < movieNames.size(); i++) {
-                System.out.println(i+1 +" "+movieNames.get(i));
+                System.out.println(i+1 +"\t"+movieNames.get(i));
             }
 
             System.out.println("Enter your choice of the movie you want to display the sessions for");
             movieChoice = JmossUtils.getInt();
         } while (movieChoice < 1 || movieChoice > movieNames.size());
 
-        return movieChoice;
+        return movieNames.get(movieChoice - 1 );
     }
 
     private void selectCinema(){
@@ -186,12 +197,14 @@ public class BookingView {
             int count = 1;
             for (BookingModel booking : customerBookings) {
                 System.out.println("Booking " + count + " details:");
+                System.out.println("Booking Ref: " + booking.getBookingRef());
                 System.out.println("Cinema theatre: " + booking.getSession().getVenue());
                 System.out.println("Movie: " + booking.getSession().getMovie());
                 System.out.println("Date: " + booking.getSession().getSessionDate());
                 System.out.println("Time: " + booking.getSession().getVenue());
                 System.out.println("Amount of seat: " + booking.getSeatsAmount());
                 System.out.println("\n");
+                count++;
             }
         }
         else{
