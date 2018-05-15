@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -17,11 +18,11 @@ public class BookingController {
         try {
             fileWriter = new FileWriter("booking.csv", true);
 
-                fileWriter.append(String.valueOf(bookingModel.getBookingRef()));
-                fileWriter.append(",");
-                fileWriter.append(String.valueOf(bookingModel.getSession().getVenue()));
-           fileWriter.append(",");
-                fileWriter.append(String.valueOf(bookingModel.getSession().getMovie()));
+            fileWriter.append(String.valueOf(bookingModel.getBookingRef()));
+            fileWriter.append(",");
+            fileWriter.append(String.valueOf(bookingModel.getSession().getVenue()));
+            fileWriter.append(",");
+            fileWriter.append(String.valueOf(bookingModel.getSession().getMovie()));
             fileWriter.append(",");
             fileWriter.append(String.valueOf(bookingModel.getSession().getSessionDate()));
             fileWriter.append(",");
@@ -75,8 +76,7 @@ public class BookingController {
         } catch (Exception e) {
             System.out.println("Error in the fileScanner !!!");
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             try {
                 input.close();
             } catch (Exception e) {
@@ -87,7 +87,7 @@ public class BookingController {
         }
     }
 
-    public ArrayList<BookingModel> getCustomerBookings (String customerEmail){
+    public ArrayList<BookingModel> getCustomerBookings(String customerEmail) {
         Scanner input = null;
         ArrayList<BookingModel> customerBookings = new ArrayList<BookingModel>();
 
@@ -110,15 +110,14 @@ public class BookingController {
                 String suburb = st.nextToken();
                 Boolean isCreditCardPayment = Boolean.parseBoolean(st.nextToken());
 
-                SessionModel session = new SessionModel(cinemaName,movie,date,time);
-                BookingModel booking = new BookingModel(bookingRef, session,email,suburb, seatsAmount,isCreditCardPayment);
+                SessionModel session = new SessionModel(cinemaName, movie, date, time);
+                BookingModel booking = new BookingModel(bookingRef, session, email, suburb, seatsAmount, isCreditCardPayment);
                 customerBookings.add(booking);
             }
         } catch (Exception e) {
             System.out.println("Error in the fileScanner !!!");
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             try {
                 input.close();
             } catch (Exception e) {
@@ -129,7 +128,46 @@ public class BookingController {
         }
     }
 
-    public ArrayList<BookingModel> getBookingLists (){
+    public ArrayList<BookingModel> getAllBookings() {
+        Scanner input = null;
+        ArrayList<BookingModel> customerBookings = new ArrayList<BookingModel>();
+
+        try {
+            File file = new File("booking.csv");
+            input = new Scanner(file);
+
+            while (input.hasNext()) {
+                String line = input.nextLine();
+                StringTokenizer st = new StringTokenizer(line, ",");
+                String bookingRef = st.nextToken();
+                String cinemaName = st.nextToken();
+                String movie = st.nextToken();
+                String date = st.nextToken();
+                String time = st.nextToken();
+                int seatsAmount = Integer.parseInt(st.nextToken());
+                String email = st.nextToken();
+                String suburb = st.nextToken();
+                Boolean isCreditCardPayment = Boolean.parseBoolean(st.nextToken());
+
+                SessionModel session = new SessionModel(cinemaName, movie, date, time);
+                BookingModel booking = new BookingModel(bookingRef, session, email, suburb, seatsAmount, isCreditCardPayment);
+                customerBookings.add(booking);
+            }
+        } catch (Exception e) {
+            System.out.println("Error in the fileScanner !!!");
+            e.printStackTrace();
+        } finally {
+            try {
+                input.close();
+            } catch (Exception e) {
+                System.out.println("Error while closing the fileScanner !!!");
+                e.printStackTrace();
+            }
+            return customerBookings;
+        }
+    }
+
+    public ArrayList<BookingModel> getBookingLists() {
         Scanner input = null;
         ArrayList<String> emailLists = new ArrayList<String>();
 
@@ -146,14 +184,13 @@ public class BookingController {
             }
 
             if (emailLists.size() > 0)
-            for (int i =0; i < emailLists.size(); i++) {
-                customerBookings.addAll(customerBookings.size(),getCustomerBookings(emailLists.get(i)));
-            }
+                for (int i = 0; i < emailLists.size(); i++) {
+                    customerBookings.addAll(customerBookings.size(), getCustomerBookings(emailLists.get(i)));
+                }
         } catch (Exception e) {
             System.out.println("Error in the fileScanner !!!");
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             try {
                 input.close();
             } catch (Exception e) {
@@ -163,4 +200,31 @@ public class BookingController {
             return customerBookings;
         }
     }
+
+    public void deleteBooking(String bookingRef) {
+        ArrayList<BookingModel> bookingList = getAllBookings();
+        for (BookingModel bookingModel : bookingList) {
+            if (bookingModel.getBookingRef().equals(bookingRef))
+                bookingList.remove(bookingModel);
+        }
+
+        File file = new File("booking.csv");
+        if (file.exists() && file.isFile()) {
+            if (file.delete()) {
+                try {
+                    if (file.createNewFile()) {
+                        for (BookingModel bookingModel : bookingList) {
+                            saveBooking(bookingModel);
+                        }
+                    }
+                } catch (Exception e) {
+                    System.out.println("Error deleting file");
+                    e.printStackTrace();
+                }
+            }
+        }
+
+
+    }
+
 }
