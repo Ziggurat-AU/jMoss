@@ -56,7 +56,6 @@ public class BookingController {
         int seatsTotal = 0;
         Scanner input = null;
         try {
-            //movies= uSessionFileReader.read(cinemaName);
             File file = new File("booking.csv");
             input = new Scanner(file);
 
@@ -106,8 +105,8 @@ public class BookingController {
                 String time = st.nextToken();
                 int seatsAmount = Integer.parseInt(st.nextToken());
                 String email = st.nextToken();
-                //if (!email.equals(customerEmail))
-                //    continue;
+                if (!email.equals(customerEmail))
+                    continue;
                 String suburb = st.nextToken();
                 Boolean isCreditCardPayment = Boolean.parseBoolean(st.nextToken());
 
