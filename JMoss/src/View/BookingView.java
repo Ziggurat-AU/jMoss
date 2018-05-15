@@ -17,22 +17,20 @@ public class BookingView {
 
     public void selectBookingType() throws Exception{
         Scanner sc=new Scanner(System.in);
+        int searchChoice =0;
         System.out.println("Enter your search option:");
         System.out.println("1. Search by theatre");
         System.out.println("2. Search by movie");
-        int searchChoice=JmossUtils.getInt();
-        if(searchChoice==1)
-        {
-            bookByTheatre();
-        }
-        else if(searchChoice==2)
-        {
-            bookByMovie();
-        }
-        if(searchChoice<1||searchChoice>2)
-        {
-            System.out.println("Please enter the correct choice!");
-        }
+        do {
+            searchChoice = JmossUtils.getInt();
+            if (searchChoice == 1) {
+                bookByTheatre();
+            } else if (searchChoice == 2) {
+                bookByMovie();
+            } else {
+                System.out.println("Please enter a correct choice!");
+            }
+        } while (searchChoice < 1 && searchChoice >2);
     }
 
     private void bookByTheatre(){
@@ -69,26 +67,28 @@ public class BookingView {
             System.out.println("Movies Playing at this cinema are:");
             sessions = sessionController.getSessionsByTheatre(cinemaName);
 
-            ArrayList<String> movieNames = new ArrayList<String>(sessionController.getMovies(sessions));
-            String selectedMovie = selectMovie(movieNames);
+            if (sessions.size() > 0) {
+                int sessionChoice;
+                ArrayList movieSchedules = new ArrayList();
 
-            int sessionChoice;
-            ArrayList movieSchedules = new ArrayList();
-            do {
-                sessions = sessionController.getMovieSchedules(cinemaName, selectedMovie, sessions);
-                sessionChoice = JmossUtils.getInt();
+                ArrayList<String> movieNames = new ArrayList<String>(sessionController.getMovies(sessions));
+                String selectedMovie = selectMovie(movieNames);
 
-                SessionModel selectedSession = sessions.get(sessionChoice - 1);
-
-                makeBooking(selectedSession);
-
-            } while (sessionChoice < 1 || sessionChoice > sessions.size());
+                do {
+                    sessions = sessionController.getMovieSchedules(cinemaName, selectedMovie, sessions);
+                    sessionChoice = JmossUtils.getInt();
+                    SessionModel selectedSession = sessions.get(sessionChoice - 1);
+                    makeBooking(selectedSession);
+                } while (sessionChoice < 1 || sessionChoice > sessions.size());
+            }
+            else{
+                System.out.println("No movies are currently playing at this theatre!");
+            }
         }
     }
 
     private void makeBooking(SessionModel selectedSession){
         Scanner sc=new Scanner(System.in);
-        BookingController bookingController = new BookingController();
 
         System.out.println("Enter amount of seats for booking:");
         int seatsAmount = JmossUtils.getInt();
@@ -96,7 +96,6 @@ public class BookingView {
         int availableSeatAmount = 20 - (bookingController.getAvailableSeatAmount(selectedSession));
         if (seatsAmount <= availableSeatAmount) {
             System.out.println("Enter customer's email:");
-            sc = new Scanner(System.in);
             String customerEmail = sc.nextLine();
 
             System.out.println("Enter customer's Suburb:");
@@ -123,7 +122,6 @@ public class BookingView {
             while (creditCardPayment == null);
 
             BookingModel bookingModel = new BookingModel(selectedSession, customerEmail, customerSuburb,seatsAmount, creditCardPayment);
-
             bookingController.saveBooking(bookingModel);
         }
         else if (availableSeatAmount == 0) {
@@ -137,26 +135,25 @@ public class BookingView {
     }
 
     private void bookByMovie(){
-        ArrayList<SessionModel> allSessionList = sessionController.getAllSessions();
-
-        int movieChoice;
-        ArrayList<String> movieNames = new ArrayList<String>(sessionController.getMovies(allSessionList));
-
-        String selectedMovie = selectMovie(movieNames);
-
+        int sessionChoice;
         ArrayList movieSchedules = new ArrayList();
 
-        ArrayList<SessionModel> sessions = sessionController.getMovieSchedules(selectedMovie, allSessionList);
-        int sessionChoice;
-        do {
-            sessionChoice = JmossUtils.getInt();
+        ArrayList<SessionModel> allSessionList = sessionController.getAllSessions();
 
-            SessionModel selectedSession = sessions.get(sessionChoice - 1);
+        if (allSessionList.size() > 0) {
+            ArrayList<String> movieNames = new ArrayList<String>(sessionController.getMovies(allSessionList));
+            String selectedMovie = selectMovie(movieNames);
+            ArrayList<SessionModel> sessions = sessionController.getMovieSchedules(selectedMovie, allSessionList);
 
-            makeBooking(selectedSession);
-
-        } while (sessionChoice < 1 || sessionChoice > sessions.size());
-
+            do {
+                sessionChoice = JmossUtils.getInt();
+                SessionModel selectedSession = sessions.get(sessionChoice - 1);
+                makeBooking(selectedSession);
+            } while (sessionChoice < 1 || sessionChoice > sessions.size());
+        }
+        else{
+            System.out.println("No movies are currently playing!");
+        }
     }
 
     private String selectMovie(ArrayList<String> movieNames){
@@ -166,16 +163,11 @@ public class BookingView {
             for (int i = 0; i < movieNames.size(); i++) {
                 System.out.println(i+1 +"\t"+movieNames.get(i));
             }
-
             System.out.println("Enter your choice of the movie you want to display the sessions for");
             movieChoice = JmossUtils.getInt();
         } while (movieChoice < 1 || movieChoice > movieNames.size());
 
         return movieNames.get(movieChoice - 1 );
-    }
-
-    private void selectCinema(){
-
     }
 
     public void deleteBooking(){
@@ -186,10 +178,7 @@ public class BookingView {
         Scanner sc=new Scanner(System.in);
 
         System.out.println("Enter customer's email:");
-        sc = new Scanner(System.in);
         String customerEmail = sc.nextLine();
-
-        BookingController bookingController = new BookingController();
 
         ArrayList<BookingModel> customerBookings = bookingController.getCustomerBookings(customerEmail);
 

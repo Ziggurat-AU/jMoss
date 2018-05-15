@@ -10,11 +10,11 @@ import java.util.StringTokenizer;
 
 public class SessionController {
     public ArrayList<SessionModel> getSessionsByTheatre (String cinemaName) {
+        Scanner input = null;
         ArrayList<SessionModel> sessions = new ArrayList<SessionModel>();
         try {
-            //movies= uSessionFileReader.read(cinemaName);
             File file = new File("cinema.csv");
-            Scanner input = new Scanner(file);
+            input = new Scanner(file);
 
             while (input.hasNext()) {
                 String line = input.nextLine();
@@ -29,20 +29,27 @@ public class SessionController {
                 SessionModel dataInput_new = new SessionModel(venue, movie, date, time);
                 sessions.add(dataInput_new);
             }
-
-            input.close();
         } catch (Exception e) {
+            System.out.println("Error in the fileScanner !!!");
             e.printStackTrace();
         }
-        return sessions;
+        finally {
+            try {
+                input.close();
+            } catch (Exception e) {
+                System.out.println("Error while closing the fileScanner !!!");
+                e.printStackTrace();
+            }
+            return sessions;
+        }
     }
 
     public ArrayList<SessionModel> getAllSessions(){
+        Scanner input = null;
         ArrayList<SessionModel> sessions = new ArrayList<SessionModel>();
         try {
-            //movies= uSessionFileReader.read(cinemaName);
             File file = new File("cinema.csv");
-            Scanner input = new Scanner(file);
+            input = new Scanner(file);
 
             while (input.hasNext()) {
                 String line = input.nextLine();
@@ -55,12 +62,19 @@ public class SessionController {
                 SessionModel dataInput_new = new SessionModel(venue, movie, date, time);
                 sessions.add(dataInput_new);
             }
-
-            input.close();
         } catch (Exception e) {
+            System.out.println("Error in the fileScanner !!!");
             e.printStackTrace();
         }
-        return sessions;
+        finally {
+            try {
+                input.close();
+            } catch (Exception e) {
+                System.out.println("Error while closing the fileScanner !!!");
+                e.printStackTrace();
+            }
+            return sessions;
+        }
     }
 
     public ArrayList getMovieSchedules (String cinemaName, String movieName, ArrayList<SessionModel> sessions) {
@@ -108,10 +122,11 @@ public class SessionController {
     }
 
     public ArrayList<SessionModel> getSessionsByMovie (String movieName){
+        Scanner input = null;
         ArrayList<SessionModel> sessions = new ArrayList<SessionModel>();
         try {
             File file = new File("cinema.csv");
-            Scanner input = new Scanner(file);
+            input = new Scanner(file);
 
             while (input.hasNext()) {
                 String line = input.nextLine();
@@ -126,10 +141,18 @@ public class SessionController {
                 SessionModel dataInput_new = new SessionModel(venue, movie, date, time);
                 sessions.add(dataInput_new);
             }
-            input.close();
         } catch (Exception e) {
+            System.out.println("Error in the fileScanner !!!");
             e.printStackTrace();
         }
-        return sessions;
+        finally {
+            try {
+                input.close();
+            } catch (Exception e) {
+                System.out.println("Error while closing the fileScanner !!!");
+                e.printStackTrace();
+            }
+            return sessions;
+        }
     }
 }

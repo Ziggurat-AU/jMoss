@@ -54,10 +54,11 @@ public class BookingController {
 
     public int getAvailableSeatAmount(SessionModel sessionModel) {
         int seatsTotal = 0;
+        Scanner input = null;
         try {
             //movies= uSessionFileReader.read(cinemaName);
             File file = new File("booking.csv");
-            Scanner input = new Scanner(file);
+            input = new Scanner(file);
 
             while (input.hasNext()) {
                 String line = input.nextLine();
@@ -73,18 +74,27 @@ public class BookingController {
                 seatsTotal = seatsTotal + seatsAmount;
             }
         } catch (Exception e) {
+            System.out.println("Error in the fileScanner !!!");
             e.printStackTrace();
         }
         finally {
+            try {
+                input.close();
+            } catch (Exception e) {
+                System.out.println("Error while closing the fileScanner !!!");
+                e.printStackTrace();
+            }
             return seatsTotal;
         }
     }
 
     public ArrayList<BookingModel> getCustomerBookings (String customerEmail){
+        Scanner input = null;
         ArrayList<BookingModel> customerBookings = new ArrayList<BookingModel>();
+
         try {
             File file = new File("booking.csv");
-            Scanner input = new Scanner(file);
+            input = new Scanner(file);
 
             while (input.hasNext()) {
                 String line = input.nextLine();
@@ -104,23 +114,30 @@ public class BookingController {
                 SessionModel session = new SessionModel(cinemaName,movie,date,time);
                 BookingModel booking = new BookingModel(bookingRef, session,email,suburb, seatsAmount,isCreditCardPayment);
                 customerBookings.add(booking);
-
             }
         } catch (Exception e) {
+            System.out.println("Error in the fileScanner !!!");
             e.printStackTrace();
         }
         finally {
+            try {
+                input.close();
+            } catch (Exception e) {
+                System.out.println("Error while closing the fileScanner !!!");
+                e.printStackTrace();
+            }
             return customerBookings;
         }
     }
 
     public ArrayList<BookingModel> getBookingLists (){
+        Scanner input = null;
         ArrayList<String> emailLists = new ArrayList<String>();
 
         ArrayList<BookingModel> customerBookings = new ArrayList<BookingModel>();
         try {
             File file = new File("booking.csv");
-            Scanner input = new Scanner(file);
+            input = new Scanner(file);
 
             while (input.hasNext()) {
                 String line = input.nextLine();
@@ -134,9 +151,16 @@ public class BookingController {
                 customerBookings.addAll(customerBookings.size(),getCustomerBookings(emailLists.get(i)));
             }
         } catch (Exception e) {
+            System.out.println("Error in the fileScanner !!!");
             e.printStackTrace();
         }
         finally {
+            try {
+                input.close();
+            } catch (Exception e) {
+                System.out.println("Error while closing the fileScanner !!!");
+                e.printStackTrace();
+            }
             return customerBookings;
         }
     }
