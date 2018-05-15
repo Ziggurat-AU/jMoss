@@ -141,8 +141,8 @@ public class BookingController {
             while (input.hasNext()) {
                 String line = input.nextLine();
                 String arr[] = line.split(",");
-                if (!emailLists.contains(arr[5]))
-                    emailLists.add(arr[5]);
+                if (!emailLists.contains(arr[6]))
+                    emailLists.add(arr[6]);
             }
 
             if (emailLists.size() > 0)
