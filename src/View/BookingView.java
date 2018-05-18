@@ -125,7 +125,7 @@ public class BookingView {
 
             BookingModel bookingModel = new BookingModel(selectedSession, customerEmail, customerSuburb, seatsAmount, creditCardPayment);
             bookingController.saveBooking(bookingModel);
-            System.out.println("Booking was deleted successfully!");
+            System.out.println("Booking successful");
         } else if (availableSeatAmount == 0) {
             System.out.println("Cannot proceed with booking!");
             System.out.println("Session is already full!");
@@ -199,6 +199,7 @@ public class BookingView {
             }
         } else {
             System.out.println("Customer has no booking!");
+            return;
         }
 
         int bookingChoice;
@@ -213,7 +214,7 @@ public class BookingView {
 
         String bookingRef = customerBookings.get(bookingChoice - 1).getBookingRef();
         bookingController.deleteBooking(bookingRef);
-
+        System.out.println("Booking was deleted successfully.");
     }
 
     public void getBookingDetails() {

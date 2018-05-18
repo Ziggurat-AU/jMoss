@@ -36,9 +36,6 @@ public class BookingController {
             fileWriter.append(",");
             fileWriter.append(String.valueOf(bookingModel.isCreditCardPayment()));
             fileWriter.append("\n");
-
-            System.out.println("Booking successful");
-
         } catch (Exception e) {
             System.out.println("Error in CsvFileWriter !!!");
             e.printStackTrace();
@@ -205,24 +202,10 @@ public class BookingController {
         File file = new File("booking.csv");
 
         ArrayList<BookingModel> bookingList = getAllBookings();
-        for (BookingModel bookingModel : bookingList) {
-            if (bookingModel.getBookingRef().equals(bookingRef)) {
-                if (bookingList.size() == 1) {
-                    if (file.exists() && file.isFile()) {
-                        if (file.delete()) {
-                            try {
-                                file.createNewFile();
-                                return;
-                            } catch (Exception e) {
-                                System.out.println("Error deleting file");
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                }
-                else {
-                    bookingList.remove(bookingModel);
-                }
+
+        for (int i = bookingList.size() - 1; i > 0; i--) {
+            if (bookingList.get(i).getBookingRef().equals(bookingRef)) {
+                bookingList.remove(bookingList.get(i));
             }
         }
 
