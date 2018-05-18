@@ -207,11 +207,12 @@ public class BookingController {
         ArrayList<BookingModel> bookingList = getAllBookings();
         for (BookingModel bookingModel : bookingList) {
             if (bookingModel.getBookingRef().equals(bookingRef)) {
-                if (bookingList.size() == 0) {
+                if (bookingList.size() == 1) {
                     if (file.exists() && file.isFile()) {
                         if (file.delete()) {
                             try {
                                 file.createNewFile();
+                                return;
                             } catch (Exception e) {
                                 System.out.println("Error deleting file");
                                 e.printStackTrace();
@@ -219,7 +220,9 @@ public class BookingController {
                         }
                     }
                 }
-                bookingList.remove(bookingModel);
+                else {
+                    bookingList.remove(bookingModel);
+                }
             }
         }
 
