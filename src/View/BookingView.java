@@ -59,7 +59,7 @@ public class BookingView {
             else
                 System.out.println("Invalid Choice! Please enter a valid choice!");
         }
-        while (!(cinemaChoice < 1 || cinemaChoice > 5));
+        while (cinemaChoice < 1 || cinemaChoice > 5);
 
         System.out.println("------------------------------------------------");
         System.out.println("Welcome to " + cinemaName + " Cinemas");
