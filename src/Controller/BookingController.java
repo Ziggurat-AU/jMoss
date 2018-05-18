@@ -222,7 +222,7 @@ public class BookingController {
                 bookingList.remove(bookingModel);
             }
         }
-        
+
         if (file.exists() && file.isFile()) {
             if (file.delete()) {
                 try {
