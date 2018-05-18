@@ -2,11 +2,47 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/test/View/BookingViewTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.classpath" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/description.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/rashi.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JMoss.iml" beforeDir="false" afterPath="$PROJECT_DIR$/JMoss.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JMoss/Controller/BookingController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JMoss/Controller/BookingController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JMoss/View/BookingView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JMoss/View/BookingView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JMoss.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Login.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/booking.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinema.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JMoss/Controller/BookingController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JMoss/Controller/LoginController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JMoss/Controller/SessionController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JMoss/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JMoss/Model/BookingModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JMoss/Model/SessionModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JMoss/Utils/JmossUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JMoss/View/BookingView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JMoss/View/LoginView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JMoss/View/MainMenuView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JMoss/sample/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JMoss/sample/JMossMain.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JMoss/sample/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JMoss/sample/sample.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/BookingController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/LoginController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SessionController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/BookingModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/SessionModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/JmossUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/BookingView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/LoginView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/MainMenuView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/View/BookingViewTest.java" beforeDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -63,81 +99,7 @@
     <favorites_list name="JavaFxApplication" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainMenuView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/View/MainMenuView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="39" column="32" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BookingView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/View/BookingView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BookingViewTest.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/View/BookingViewTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BookingController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/BookingController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="93">
-              <caret line="182" column="40" selection-start-line="182" selection-start-column="40" selection-end-line="182" selection-end-column="40" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3597#3611#0" expanded="true" />
-                <element signature="e#5287#5301#0" expanded="true" />
-                <element signature="e#6886#6894#0" expanded="true" />
-                <element signature="e#6963#6977#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JmossUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Utils/JmossUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="43" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BookingModel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/BookingModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SessionModel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/SessionModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -212,10 +174,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="40" />
-    <option name="y" value="23" />
-    <option name="width" value="1640" />
-    <option name="height" value="1027" />
+    <option name="x" value="1912" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectReloadState">
     <option name="STATE" value="0" />
@@ -225,8 +187,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -254,6 +214,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -270,7 +232,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="Arquillian JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Arquillian JUnit4" value="Controller.BookingController" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Advanced Programming/Assignments/Assignment 1/social-network" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -301,7 +263,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Arquillian JUnit.BookingViewTest">
+  <component name="RunManager" selected="Application.Main (1)">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
     </configuration>
@@ -429,8 +391,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Arquillian JUnit.BookingViewTest" />
         <item itemvalue="Application.Main (1)" />
+        <item itemvalue="Arquillian JUnit.BookingViewTest" />
         <item itemvalue="Application.Login" />
       </list>
     </recent_temporary>
@@ -457,37 +419,39 @@
       <workItem from="1526351477579" duration="17000" />
       <workItem from="1526351509133" duration="292000" />
       <workItem from="1526504626625" duration="467000" />
+      <workItem from="1526635878359" duration="618000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51909000" />
+    <option name="totallyTimeSpent" value="52527000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="40" y="23" width="1640" height="1027" extended-state="6" />
+    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="7" />
-      <window_info anchor="bottom" id="Messages" order="9" visible="true" weight="0.32738718" />
+      <window_info anchor="bottom" id="Messages" order="9" weight="0.32738718" />
       <window_info anchor="right" id="Palette&#9;" order="9" />
       <window_info id="Image Layers" order="6" />
       <window_info anchor="right" id="Capture Analysis" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="4" />
       <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.4250797" />
       <window_info anchor="bottom" id="Version Control" order="12" weight="0.32948583" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.4260231" />
       <window_info anchor="bottom" id="Terminal" order="14" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.16402438" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.13072917" />
       <window_info anchor="right" id="Database" order="5" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="3" />
       <window_info anchor="right" id="Theme Preview" order="8" />
-      <window_info id="Favorites" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.3985122" />
+      <window_info id="Favorites" order="4" side_tool="true" />
       <window_info anchor="right" id="JetGradle" order="6" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -546,9 +510,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
           <caret line="9" column="29" lean-forward="true" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -577,9 +538,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="46">
           <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -599,9 +557,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2714">
           <caret line="118" column="27" lean-forward="true" selection-start-line="118" selection-start-column="27" selection-end-line="118" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -646,27 +601,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore" />
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Utils.java" />
-    <entry file="file://$PROJECT_DIR$/src/View/LoginView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cinema.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -690,60 +625,73 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Utils/JmossUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
+        <state relative-caret-position="276">
           <caret line="12" column="43" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/SessionModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
+        <state relative-caret-position="299">
           <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/BookingModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
+        <state relative-caret-position="368">
           <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/BookingController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="182" column="40" selection-start-line="182" selection-start-column="40" selection-end-line="182" selection-end-column="40" />
+        <state relative-caret-position="4600">
+          <caret line="208" column="9" selection-start-line="208" selection-start-column="9" selection-end-line="208" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3597#3611#0" expanded="true" />
-            <element signature="e#5287#5301#0" expanded="true" />
-            <element signature="e#6886#6894#0" expanded="true" />
-            <element signature="e#6963#6977#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/View/MainMenuView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="39" column="32" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="32" />
+        <state relative-caret-position="920">
+          <caret line="41" column="9" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/View/BookingViewTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="26" column="9" lean-forward="true" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/View/BookingView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
-          <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+          <caret line="37" column="19" selection-start-line="37" selection-start-column="19" selection-end-line="37" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/View/BookingViewTest.java">
+    <entry file="file://$PROJECT_DIR$/src/View/LoginView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+        <state relative-caret-position="391">
+          <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -202,13 +202,27 @@ public class BookingController {
     }
 
     public void deleteBooking(String bookingRef) {
+        File file = new File("booking.csv");
+
         ArrayList<BookingModel> bookingList = getAllBookings();
         for (BookingModel bookingModel : bookingList) {
-            if (bookingModel.getBookingRef().equals(bookingRef))
+            if (bookingModel.getBookingRef().equals(bookingRef)) {
+                if (bookingList.size() == 0) {
+                    if (file.exists() && file.isFile()) {
+                        if (file.delete()) {
+                            try {
+                                file.createNewFile();
+                            } catch (Exception e) {
+                                System.out.println("Error deleting file");
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
                 bookingList.remove(bookingModel);
+            }
         }
-
-        File file = new File("booking.csv");
+        
         if (file.exists() && file.isFile()) {
             if (file.delete()) {
                 try {
