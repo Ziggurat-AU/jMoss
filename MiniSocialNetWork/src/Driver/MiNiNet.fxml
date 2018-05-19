@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.88" prefHeight="395.0" prefWidth="723.0" style="-fx-background-color: #FFEBCD;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="387.0" layoutY="-11.0" prefHeight="407.0" prefWidth="337.0" style="-fx-background-color: #C0C0C0;">
+         <children>
+            <PasswordField layoutX="89.0" layoutY="325.0" promptText="passwrod" />
+            <TextField layoutX="89.0" layoutY="286.0" promptText="Username" />
+         </children>
+      </AnchorPane>
+      <Text layoutX="384.0" layoutY="-48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign in" wrappingWidth="73.775146484375">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <AnchorPane layoutX="3.0" layoutY="-38.0" prefHeight="448.0" prefWidth="386.0">
+         <children>
+            <Text layoutX="12.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to MiNiNetWork...................." wrappingWidth="339.8781433105469">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="9.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to MiniNet..........................................." />
+            <Text layoutX="22.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome welcomewelcome HAHAHAHAHAHAHAHAHAHAHAHAH....................................................................." wrappingWidth="337.02691650390625" />
+            <ImageView fitHeight="420.0" fitWidth="421.0" layoutX="-23.0" layoutY="23.0" opacity="0.59" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../Desktop/Takashi%20murakami/cnrWAJ8dDeKcnPZzRsF88cj8Yj2B23-product_1024x1024.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="138.0" layoutY="83.0" text="MiniNetwork">
+               <font>
+                  <Font size="38.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
