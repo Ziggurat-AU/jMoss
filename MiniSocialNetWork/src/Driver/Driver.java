@@ -7,30 +7,25 @@
  */
 package Driver;
 
-
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import javafx.scene.shape.Rectangle;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 
-//import javafx.application.Application;
-//import javafx.fxml.FXMLLoader;
-//import javafx.scene.Parent;
-//import javafx.scene.Scene;
-//import javafx.stage.Stage;
-
-
- 
-public class Driver {
+public class Driver extends Application{
 	
 	public ArrayList<UserNodes> data ;
 	
 	public Driver () {
 	   
-		data= (new UserData()).data;
+//		data= (new UserData()).data;
 		
 		
 //		userNodes = new ArrayList<UserNodes>();
@@ -82,14 +77,15 @@ public class Driver {
 		int userOption;
 		
 		do{
-			System.out.println("MiniNet Menu");
-			System.out.println("===================================");
-			System.out.println("1.   List everyone ;  ")  ;
-			System.out.println("2.   Select two person, Are these two direct friends ;");
-			System.out.println("3.  Exit   ");
+			System.out.println("");
+			System.out.println("                     MiniNet Menu");
+			System.out.println("==========================================================");
+			System.out.println("     1.   List everyone ;  ")  ;
+			System.out.println("     2.   Select two person, Are these two direct friends ;");
+			System.out.println("     3.   Exit   ");
 		   // System.out.println("4.   Exit ");
-		    System.out.println("");
-		    System.out.println("Enter an option:   ");
+		    System.out.println("==========================================================");
+		    System.out.println("     Enter an option:   ");
 			
 		    
 		    
@@ -103,9 +99,12 @@ public class Driver {
 			    case 2:
 			    	checkIfFriends();
 			    	break;
-			    case 3:
+			
+			    	/*  case 3:
 			    	System.out.println("3. ")  ;
-			    	break;
+			    	break; */
+			    	
+			    	
 			    case 4: 
 			    	System.out.println("EXIT ")  ;
 			    	break;
@@ -137,11 +136,11 @@ public class Driver {
 	private void checkIfFriends(){
 		//get two person
 
-		System.out.println("Input two Persons' names ( one name per line):");
-		System.out.println("(ex:");
+		System.out.println("Input two Persons' names ( one name per line) eg:");
+		//System.out.println("( ex:");
 	    System.out.println("Jay");
 	    System.out.println("Alan");
-	    System.out.println(")");
+	   // System.out.println(" )");
 		
 		
 		Scanner sc = new Scanner ( System.in) ; 
@@ -149,27 +148,27 @@ public class Driver {
 		String secondInput=sc.nextLine();
 		
 		
-		UserNodes firstPerson=null;
-		UserNodes secondPerson=null;
-		for(int i=0;i<data.size();i++){
-			if(data.get(i).getName().equals( firstInput) ){
-				firstPerson=data.get(i);
+		UserNodes firstPerson = null;
+		UserNodes secondPerson = null;
+		for( int i = 0 ; i < data.size() ; i++ ) {
+			if( data.get(i).getName().equals ( firstInput ) ){
+				firstPerson = data.get(i);
 			}
-			if(data.get(i).getName().equals( secondInput) ){
-				secondPerson=data.get(i);
+			if( data.get(i).getName().equals( secondInput ) ){
+				secondPerson = data.get(i);
 			}
 		}
 		
 		//check friends
-		ArrayList<UserNodes> friends=firstPerson.listFriends();
+		ArrayList <UserNodes> friends = firstPerson.listFriends();
 		
-		boolean found=false;
+		boolean found = false ;
 		
 		
 		//check if person one have person two in friend list
-		for(int i=0;i<friends.size();i++){
-			if(friends.get(i).getName()==secondPerson.getName()){
-				found=true;
+		for(int i = 0;i < friends.size(); i++ ) {
+			if ( friends.get(i).getName() == secondPerson.getName()){
+				found = true;
 				break;
 			}
 		}
@@ -195,6 +194,7 @@ public class Driver {
 	
 	public static void main(String[] args) {
 		
+		launch(args);
 		
 		Driver d = new Driver();
 //		d.diverMenu();
@@ -271,7 +271,23 @@ public class Driver {
     	
     	
     	
-    }	
+    }
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+
+		primaryStage.setTitle("Mini Network");
+
+
+		Parent root = FXMLLoader.load(getClass().getResource("MiNiNet.fxml"));
+
+		Scene scene = new Scene(root);
+
+		primaryStage.setScene(scene);
+
+		primaryStage.show();
+		
+	}	
 	
 	
 	

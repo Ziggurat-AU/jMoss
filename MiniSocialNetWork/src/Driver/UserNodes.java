@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public abstract class UserNodes  {
  
-
 	private String name;
 	private String status ;
 	private int age;
@@ -12,17 +11,14 @@ public abstract class UserNodes  {
 	 
 
 	//UserNodes constructor for user own, no friends.
-	public UserNodes (String userName, String userStatus, int userAge) 
-	{
-		
+	public UserNodes (String userName, String userStatus, int userAge) {
 		name = userName;
 		status = userStatus ;
-		age = userAge ;
-	
+		age = userAge ;	
 	}
 	 
 	  
-	public String getName() {
+    public String getName() {
 		return this.name;
 	}
 	public void setName(String name) {
@@ -56,28 +52,21 @@ public abstract class UserNodes  {
 //	
 //	
 	public ArrayList<UserNodes> listFriends() { 
-		return friends;
+		         return friends;
 	}
 	
 
-	public boolean checkAge(UserNodes friend) { 
-		
-		if( friend.getAge() >= 16 ) {
-//			
-//			System.out.println("This is a adult user. ");
-//		
-			return true;
-		}
-		return false; 
-			
+	public boolean checkAge ( UserNodes friend) { 
+			if( friend.getAge() >= 16 ) {
+	        	return true;
+		    }
+		        return false; 
 	}
 
 
 	public boolean makeFriend(UserNodes userNodes) {
-		return false;
+		       return false;
 	}
-	 
-
 }
 
 

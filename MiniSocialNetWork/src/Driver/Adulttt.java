@@ -32,8 +32,4 @@ public class Adulttt extends UserNodes
 		
 
 	}
-	
-
-	
-
 }
